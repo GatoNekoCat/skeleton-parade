@@ -158,8 +158,9 @@ export const register: Register = on => {
     }
     const kept = await $.store.get(DETAIL_KEY).catch(() => undefined)
 
-    if (typeof kept === 'number' && Number.isInteger(kept) && kept >= 1 && kept <= DETAIL_LEVELS) {
-      detail = kept
+    // A level saved by an older version may be above today's ceiling: hold it to the top.
+    if (typeof kept === 'number' && Number.isInteger(kept) && kept >= 1) {
+      detail = Math.min(kept, DETAIL_LEVELS)
     }
     await $.theme.set(LOOK)
     await $.command.register({

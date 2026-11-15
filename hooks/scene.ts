@@ -1922,17 +1922,14 @@ export const sceneLadder = (): readonly { label: string; svg: string }[] =>
   })
 
 // What /doot detail <n> chooses between, leanest first. The app stops a scene it
-// finds too heavy, and where that line sits varies by machine and by moment, so
-// the person picks the richest level their app keeps marching.
+// finds too heavy. Level 2 is the standard and the ceiling: it is the richest
+// level that kept marching in steady use (about 400 animated elements, 240k
+// drawn path chars); two richer levels existed and stalled, so they are gone.
 const DETAIL_OPTIONS: readonly SceneOptions[] = [
   // light bodies; every file walks by pose swap; only the front guard turns in the toss
   { spacing: 2 * LOOP, light: [0, 1, 2, 3, 4], routine: 1, rig: [] },
   // full bodies and the true leg rig on the nearest file; the front guard turns
   { spacing: 2 * LOOP, light: [0, 1, 2, 3], routine: 1, rig: [4] },
-  // the same, with the middle guard turning too
-  { spacing: 2 * LOOP, light: [0, 1, 2, 3], routine: 2, rig: [4] },
-  // the true rig on the nearest two files; all three guards turn
-  { spacing: 2 * LOOP, light: [0, 1, 2, 3], routine: 3, rig: [3, 4] },
 ]
 
 export const DETAIL_LEVELS = DETAIL_OPTIONS.length
