@@ -1,0 +1,5 @@
+{
+  "name": "gatonekocat",
+  "owner": { "name": "Patrick Smith" },
+  "plugins": [{ "name": "skeleton-parade", "source": "./" }]
+}
